@@ -36,7 +36,12 @@ class IdeaForm extends Component {
 		return (
 			<div className="tile">
 				<form onBlur={this.handleBlur}>
-					<input type="text" className="input" name="title" placeholder="Enter a Title" onChange={this.handleInput} />
+					<input
+						type="text"
+						className="input"
+						name="title" placeholder="Enter a Title"
+						onChange={this.handleInput}
+						ref={this.props.titleRef} />
 					<textarea name="body" className="input" placeholder="Desrcibe your idea" onChange={this.handleInput} ></textarea>
 				</form>
 			</div>
