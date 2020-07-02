@@ -9,7 +9,8 @@ class IdeasContainer extends Component {
 		super(props);
 		this.state = {
 			ideas: [],
-			editingIdeaId: null
+			editingIdeaId: null,
+			notification: ''
 		};
 	}
 
@@ -17,7 +18,7 @@ class IdeasContainer extends Component {
 		axios.get('http://localhost:3001/api/v1/ideas.json')
 			.then((response) => {
 				console.log(response);
-				this.setState({ ideas: response.data });
+				this.setState({ ideas: response.data, notification: 'All changes saved' });
 			})
 			.catch((error) => console.log(error));
 	}
@@ -57,6 +58,7 @@ class IdeasContainer extends Component {
 					<button className="newIdeaButton" onClick={this.addNewidea} >
 						New Idea
 				</button>
+					<span className="notification">{this.state.notification}</span>
 				</div>
 
 				{this.state.ideas.map((idea) => {
