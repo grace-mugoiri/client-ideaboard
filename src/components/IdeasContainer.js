@@ -3,6 +3,7 @@ import axios from 'axios';
 import Idea from './Idea';
 import update from 'immutability-helper';
 import IdeaForm from './IdeaForm';
+// import Notification from './Notification';
 
 class IdeasContainer extends Component {
 	constructor(props) {
@@ -50,6 +51,9 @@ class IdeasContainer extends Component {
 		})
 		this.setState({ideas: ideas})
 	}
+	resetNotification = () => {
+		this.setState({notification: ''})
+	}
 
 	render() {
 		return (
@@ -63,7 +67,9 @@ class IdeasContainer extends Component {
 
 				{this.state.ideas.map((idea) => {
 					if (this.state.editingIdeaId === idea.id) {
-						return (<IdeaForm idea={idea} key={idea.id } updateIdea={this.updatedIdea} />)
+						return (<IdeaForm idea={idea} key={idea.id}
+							updateIdea={this.updatedIdea}
+							resetNotification={this.resetNotification} />)
 					} else {
 						return (<Idea idea={idea} key={idea.id} />)
 					}
